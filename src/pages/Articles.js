@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import API from '../data';
 import { translateMessage } from '../utils/translateMessage';
-import ArticleList from '../components/ArticleList';
+import ArticleList from '../components/DriversList';
 import ArticleForm from '../components/ArticleForm';
 import { Button, message, Skeleton, Row, Col } from 'antd';
 import { useAuth } from '../providers/Auth';

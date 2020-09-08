@@ -1,31 +1,29 @@
 import React from 'react';
-import ArticleList from '../components/ArticleList';
-import { useArticleList } from '../data/useArticleList';
+import ArticleList from '../components/DriversList';
 import ShowError from '../components/ShowError';
+import DriversList from "../components/DriversList";
 
 const HomePage = () => {
-  const articles = useArticleList();
+
 
   return (
-    <>
-      <h1 className='page-title'>
-        <a href='https://es.reactjs.org/'>React</a> boilerplate
-        con <a href='https://ant.design/docs/react/introduce'>Antd</a>
-      </h1>
+    <div style={{ margin: '70px 50px',padding: 24, minHeight: 360, textAlign:"center", background:"#96B2DC"}}>
+        <p style={{ margin: '120px 50px' }}>Este es un prototipo de una aplicacion Web que tiene como fin ayudar a las cooperativas de buses a poder compartir sus rutas,
+          paradas, puntos de interes y horarios a sus usuarios.</p>
+    <DriversList />
+    </div>
+  );
+};
 
-      <p>Este es el contenido de la página principal.</p>
 
-      <h2>Lista de Artículos</h2>
-      {
+export default HomePage;
+
+/*
+{
         articles.isLoading
           ? 'Cargando...'
           : articles.isError
           ? <ShowError error={ articles.isError } />
           : <ArticleList articles={ articles.articles } />
       }
-    </>
-  );
-};
-
-
-export default HomePage;
+ */
