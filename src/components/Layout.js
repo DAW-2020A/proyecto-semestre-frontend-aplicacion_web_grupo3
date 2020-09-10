@@ -1,16 +1,25 @@
 import React from 'react';
 import Routes from '../constants/routes';
 import Navigation1 from './Navigation1';
-import { Layout, Row, Col, Button, Popover } from 'antd';
-import { FacebookOutlined, InstagramOutlined, GithubOutlined, MailOutlined, WhatsAppOutlined } from '@ant-design/icons';
+import Navigation2 from './Navigation2';
+import {Layout, Row, Col, Button, Popover, Menu} from 'antd';
+import {
+    FacebookOutlined,
+    InstagramOutlined,
+    GithubOutlined,
+    MailOutlined,
+    WhatsAppOutlined,
+    UserOutlined, LoadingOutlined, LogoutOutlined, LoginOutlined
+} from '@ant-design/icons';
 import logo from '../images/logo-menta.png';
 import moment from 'moment';
 import { Link } from 'react-router-dom';
+import {useAuth} from "../providers/Auth";
 
 const Header = Layout.Header;
 const Content = Layout.Content;
 const Footer = Layout.Footer;
-
+const Sider = Layout.Sider;
 /**
  * Este componente renderiza los elementos comunes para toda la aplicación
  *
@@ -21,22 +30,63 @@ const Footer = Layout.Footer;
  * @constructor
  */
 const MainLayout = props => {
+    const { isAuthenticated, isCheckingAuth, currentUser } = useAuth();
     console.log( 'props', props );
     return (
         <div className='app'>
             <Layout>
 
-                <Header className='header1'>
-                    <h1 >Bienvenido</h1>
-                </Header>
-                <Content className='content'>
 
-                    <div ><Navigation1></Navigation1>    </div>
+                {
+                    isAuthenticated
+                        ?<div>
+                        <Header className='header1' style={{width: "1366px",height:"70px"}}>
+
+                            <div style={{textAlign:"center",fontSize:"2em"}}>
+                                ADMINISTRADOR
+
+                                <div style={{float:"right",fontSize:15}}>
+                                    <Link to={ Routes.LOGOUT } className='logout-link'>
+                                        {
+                                            isCheckingAuth
+                                                ? <LoadingOutlined />
+                                                : <><LogoutOutlined /> Salir</>
+                                        }
+                                    </Link>
+                                </div>
+                            </div>
 
 
-                    <div>{ props.children }</div>
 
-                </Content>
+                        </Header>
+
+                            <Content className='content'>
+                                <div ><Navigation2></Navigation2></div>
+
+
+                                <div>{ props.children }</div>
+
+
+                            </Content>
+                            </div>
+                        : <div>
+                            <Header className='header1'>
+                            <h1 >Bienvenido</h1>
+                            </Header>
+
+                            <Content className='content'>
+                                <div><Navigation1></Navigation1></div>
+
+                                <div>{ props.children }</div>
+
+
+
+                            </Content>
+                            </div>
+                }
+
+
+
 
                 <Footer className='footer'>
                     <Row>
