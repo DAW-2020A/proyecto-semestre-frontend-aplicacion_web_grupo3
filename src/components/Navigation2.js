@@ -6,7 +6,7 @@ import { useAuth } from '../providers/Auth';
 import { Menu, Layout } from 'antd';
 import { LogoutOutlined, LoginOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons';
 import { Link, useLocation } from 'react-router-dom';
-import '../styles/navigation.css';
+
 
 const linkStyle = {};
 const {SubMenu} = Menu;
@@ -44,14 +44,34 @@ const Navigation1 = ( props ) => {
         <Sider style={{ background: "#ffffff" }}>
           <div className="logo" />
           <Menu style={{ background: "#ffffff" }} theme="light" defaultSelectedKeys={['1']} mode="inline">
-            <SubMenu style={{ color: "#1890FF" }} key="sub1" icon={<UserOutlined />} title="Administrador">
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }} >Ingresar
-                <Link to={ Routes.LOGIN } className='logout-link'>
+            <SubMenu style={{ color: "#000000" }} key="sub1" icon={<UserOutlined />} title="Cooperativa">
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }} key={Routes.HOME}>Registrar
+                <Link to={ Routes.HOME } className='logout-link'>
+
+                </Link>
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                <Link to={ Routes.ABOUT } className='logout-link'>
 
                 </Link>
               </Menu.Item>
 
             </SubMenu>
+
+            <SubMenu style={{ color: "#000000" }} key="sub2" icon={<UserOutlined />} title="Conductor">
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Registrar
+                <Link to={ Routes.HOME } className='logout-link'>
+
+                </Link>
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                <Link to={ Routes.ABOUT } className='logout-link'></Link>
+              </Menu.Item>
+            </SubMenu>
+
           </Menu>
         </Sider>
       </Layout>

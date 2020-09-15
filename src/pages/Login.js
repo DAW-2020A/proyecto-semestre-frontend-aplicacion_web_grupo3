@@ -40,7 +40,7 @@ const Login = () => {
     <>
       {
         <Row justify='center' className='login'>
-          <Col span={ 8 }>
+          <Col span={ 24 }>
             <Form
               name='login-form'
               className='login-form'
