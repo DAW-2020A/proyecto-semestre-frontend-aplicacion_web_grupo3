@@ -12,6 +12,7 @@ import '../styles/login.css';
 import ErrorList from '../components/ErrorList';
 
 const Login = () => {
+
   const { setAuthenticated, setCurrentUser } = useAuth();
 
   const onFinish = async( userData ) => {
@@ -37,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <>
+    <div className="divLogin" align={"center"}>
       {
         <Row justify='center' className='login'>
           <Col span={ 24 }>
@@ -105,7 +106,7 @@ const Login = () => {
           </Col>
         </Row>
       }
-    </>
+    </div>
   );
 };
 
