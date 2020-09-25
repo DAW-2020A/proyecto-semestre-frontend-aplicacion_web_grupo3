@@ -22,6 +22,7 @@ const privateRoutes = {
   DRIVERS:'/driver',
   RUTAS:'/rutas',
   UNIDADES:'unidades',
+  BUSSTOP:'/paradas',
 };
 
 const Routes = {
