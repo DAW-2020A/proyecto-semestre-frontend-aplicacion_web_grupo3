@@ -2,6 +2,7 @@ import React from 'react';
 import Routes from '../constants/routes';
 import NavigationHome from './NavigationHome';
 import NavigationAdmin from './NavigationAdmin';
+
 import {Layout, Row, Col, Button, Popover, Menu} from 'antd';
 import {
     FacebookOutlined,
@@ -16,11 +17,11 @@ import moment from 'moment';
 import { Link } from 'react-router-dom';
 import {useAuth} from "../providers/Auth";
 import '../styles/layout.css';
-
+import bus from '../images/bus.png';
 const Header = Layout.Header;
 const Content = Layout.Content;
 const Footer = Layout.Footer;
-const Sider = Layout.Sider;
+
 /**
  * Este componente renderiza los elementos comunes para toda la aplicación
  *
@@ -39,18 +40,18 @@ const MainLayout = props => {
                     isAuthenticated
                         ?<div className="divLayoutValidate">
                             <Header style={{background:"#FFE7AB"}} className="header1">
-                            <div>
-                                ADMINISTRADOR
-                                <div style={{float:"right",fontSize:20}}>
-                                    <Link to={ Routes.LOGOUT } className='logout-link'>
-                                        {
-                                            isCheckingAuth
-                                                ? <LoadingOutlined />
-                                                : <><LogoutOutlined /> Salir</>
-                                        }
-                                    </Link>
+                                <div><img className='bus-logo' src={ bus }  height={ 50 } />
+                                    ADMINISTRADOR
+                                    <div style={{float:"right",fontSize:20}}>
+                                        <Link to={ Routes.LOGOUT } className='logout-link'>
+                                            {
+                                                isCheckingAuth
+                                                    ? <LoadingOutlined />
+                                                    : <><LogoutOutlined /> Salir</>
+                                            }
+                                        </Link>
+                                    </div>
                                 </div>
-                            </div>
                             </Header>
                             <Content className='content'>
                                 <div ><NavigationAdmin></NavigationAdmin></div>

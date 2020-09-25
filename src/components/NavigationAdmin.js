@@ -1,11 +1,13 @@
-
 import React, { useState } from 'react';
 
 import Routes from '../constants/routes';
 import { useAuth } from '../providers/Auth';
-import { Menu, Layout } from 'antd';
+import { Menu, Layout,Button } from 'antd';
 import { LogoutOutlined, LoginOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons';
+import UnidadesForm from "./UnidadesForm";
+import DriverForm from "./DriverForm";
 import { Link, useLocation } from 'react-router-dom';
+import UnidadesList from "./UnidadesList";
 
 
 const linkStyle = {};
@@ -13,6 +15,9 @@ const {SubMenu} = Menu;
 const Sider = Layout.Sider;
 
 const Navigation1 = ( props ) => {
+  const [ visible1, setVisible1 ] = useState( false );
+  const [ visible2, setVisible2 ] = useState( false );
+
   let location = useLocation();
 
   const [ menuState, setMenuState ] = useState( {
@@ -61,14 +66,65 @@ const Navigation1 = ( props ) => {
             </SubMenu>
 
             <SubMenu style={{ color: "#000000" }} key="sub2" icon={<UserOutlined />} title="Conductor">
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Registrar
-                <Link to={ Routes.HOME } className='logout-link'>
+              <Menu.Item  key={Routes.DRIVERS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                <Button
+                    type="link"
+                    onClick={ () => {
+                      setVisible1( true );
+                    } }
+                    block
+                >
+                  Registrar
+                </Button>
+                <DriverForm
 
-                </Link>
+                    visible={ visible1 }
+                    update={ false }
+
+                    onCancel={ () => {
+                      setVisible1( false );
+                    } }
+                />
+
               </Menu.Item>
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
-                <Link to={ Routes.ABOUT } className='logout-link'></Link>
+
+                  <Link to={ Routes.DRIVERS } className='logout-link'>
+                  </Link>
+
+
+                </Menu.Item>
+            </SubMenu>
+
+            <SubMenu style={{ color: "#000000" }} key="sub3" icon={<UserOutlined />} title="Unidades">
+              <Menu.Item  key={Routes.UNIDADES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                <Button
+                    type="link"
+                    onClick={ () => {
+                      setVisible2( true );
+                    } }
+                    block
+                >
+                  Registrar
+                </Button>
+                <UnidadesForm
+
+                    visible={ visible2 }
+                    update={ false }
+
+                    onCancel={ () => {
+                      setVisible2( false );
+                    } }
+                />
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                <Link to={ Routes.DRIVERS } className='logout-link'>
+                </Link>
+
+
               </Menu.Item>
             </SubMenu>
 

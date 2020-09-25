@@ -21,11 +21,11 @@ import Routes from '../constants/routes';
  * @param location The location to redirect to.
  */
 export default function withAuthRedirect( {
-  WrappedComponent,
-  LoadingComponent = Loading,
-  expectedAuth,
-  location
-} ) {
+                                            WrappedComponent,
+                                            LoadingComponent = Loading,
+                                            expectedAuth,
+                                            location
+                                          } ) {
   const WithAuthRedirectWrapper = props => {
 
     const { isCheckingAuth, isAuthenticated } = useAuth();

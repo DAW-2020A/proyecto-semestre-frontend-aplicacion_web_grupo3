@@ -18,7 +18,11 @@ body {
     background: #FFE7AB;
 }
 
-
+.bus-logo{
+    float: left;
+    margin-top: 0px;
+    height: 63px;
+}
 
 .ant-menu {
     background-color: transparent;

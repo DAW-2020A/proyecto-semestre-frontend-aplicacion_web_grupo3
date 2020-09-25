@@ -24,12 +24,14 @@ const AsyncHome = loadable( () => import( '../pages/Index' ), loadableOptions );
 const AsyncLogin = loadable( () => import( '../pages/Login' ), loadableOptions );
 const AsyncRegister = loadable( () => import( '../pages/Register' ), loadableOptions );
 const AsyncPrivate = loadable( () => import( '../pages/Private' ), loadableOptions );
-const AsyncArticles = loadable( () => import( '../pages/Articles' ), loadableOptions );
+//const AsyncArticles = loadable( () => import( '../pages/Articles' ), loadableOptions );
 const AsyncArticle = loadable( () => import( '../pages/Article' ), loadableOptions );
 const AsyncAbout = loadable( () => import( '../pages/About' ), loadableOptions );
 const AsyncLogout = loadable( () => import( '../pages/Logout' ), loadableOptions );
 const AsyncVerCooperativa = loadable( () => import( '../pages/VerCooperativa' ), loadableOptions );
-
+const AsyncDrivers = loadable( () => import( '../pages/Drivers' ), loadableOptions );
+const AsyncRutas = loadable( () => import( '../pages/Rutas' ), loadableOptions );
+const AsyncUnidades = loadable( () => import( '../pages/Unidades' ), loadableOptions );
 /**
  * Este es el componente que se encarga de renderizar el componente adecuado
  * de acuerdo a la ruta en la que se encuentra el navegador.
@@ -46,9 +48,13 @@ const AppRouter = () => (
     <PublicRoute exact path={ Routes.HOME } component={ AsyncHome } />
     <PublicRoute path={ Routes.LOGIN } component={ AsyncLogin } />
     <PublicRoute path={ Routes.REGISTER } component={ AsyncRegister } />
-    <PublicRoute path={ Routes.ARTICLES } component={ AsyncArticles } />
+
     <PublicRoute path={ Routes.ABOUT } component={ AsyncAbout } />
     <PublicRoute path={ Routes.VERCOOPERATIVA } component={ AsyncVerCooperativa } />
+
+      <PrivateRoute path={ Routes.DRIVERS } component={ AsyncDrivers } />
+      <PrivateRoute path={ Routes.RUTAS } component={ AsyncRutas } />
+      <PrivateRoute path={ Routes.UNIDADES } component={ AsyncRutas } />
 
     <PrivateRoute path={ Routes.PRIVATE } component={ AsyncPrivate } />
     <PrivateRoute path={ Routes.ARTICLE_ID } component={ AsyncArticle } />
