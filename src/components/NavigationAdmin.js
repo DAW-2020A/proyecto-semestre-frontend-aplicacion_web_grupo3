@@ -8,6 +8,7 @@ import UnidadesForm from "./UnidadesForm";
 import DriverForm from "./DriverForm";
 import { Link, useLocation } from 'react-router-dom';
 import UnidadesList from "./UnidadesList";
+import RoutesForm from "./RoutesForm";
 import BusStopForm from "./BusStopForm";
 import CategoryForm from "./CategoryForm";
 
@@ -166,6 +167,10 @@ const Navigation1 = ( props ) => {
 
             <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Categorias">
               <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
+            <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Rutas">
+              <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
                 <Button
                     type="link"
                     onClick={ () => {
@@ -175,7 +180,10 @@ const Navigation1 = ( props ) => {
                 >
                   Registrar
                 </Button>
+
                 <CategoryForm
+
+                <RoutesForm
 
                     visible={ visible4 }
                     update={ false }
