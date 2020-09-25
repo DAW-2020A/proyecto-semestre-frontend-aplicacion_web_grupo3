@@ -23,7 +23,8 @@ const privateRoutes = {
   RUTAS:'/rutas',
   UNIDADES:'unidades',
   BUSSTOP:'/paradas',
-  CATEGORIES:'categorias'
+  CATEGORIES:'categorias',
+  PUNTOSINTERES:'puntosinteres'
 };
 
 const Routes = {

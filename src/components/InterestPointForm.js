@@ -6,6 +6,8 @@ import ErrorList from './ErrorList';
 import { PlusOutlined } from '@ant-design/icons';
 import { mutate } from 'swr';
 import {useCooperativaList} from "../data/useCooperativaList";
+import {useBusstopList} from "../data/useBusstopList";
+
 
 const { Option } = Select;
 
@@ -20,14 +22,14 @@ function onChange(date, dateString) {
     console.log(date, dateString);
 }
 
-const DriverForm = ({
+const InterestPointForm = ({
                         visible,
                         update,
                         onSubmit,
                         onCancel
 
                     } ) => {
-    const { cooperativas } = useCooperativaList();
+    const { busstops } = useBusstopList();
     const [startDate, setStartDate] = useState(new Date());
     const [ form ] = Form.useForm();
     const [ imageUrl, setImageUrl ] = useState( null );
@@ -49,22 +51,22 @@ const DriverForm = ({
 
                 // use form data to be able to send a file to the server
                 const data = new FormData();
-                data.append( 'cooperativa_id', values.cooperativa_id );
+                data.append( 'categorie_places_id', values.categorie_id );
+                data.append( 'bus_stop_id', values.bus_stop_id );
                 data.append( 'name', values.name );
-                data.append( 'last_name', values.last_name );
-                data.append( 'cellphone', values.cellphone );
-                data.append( 'phone', values.phone );
                 data.append( 'direction', values.direction );
-                data.append( 'date', values.date );
-                data.append( 'mail', values.mail );
-
+                data.append( 'phone', values.phone );
+                data.append( 'longitude', values.longitude );
+                data.append( 'latitude', values.latitude );
+                data.append( 'hour_start', values.hour_start );
+                data.append( 'hour_end', values.hour_end);
 
                 try {
-                    await API.post( '/drivers', data ); // post data to server
+                    await API.post( '/interest_points', data ); // post data to server
                     form.resetFields();
-                    //cooperativas_id:cooperativasId
+
                     setFileList( [] );
-                    //setImageUrl( null );
+
                     setIsSaving( false );
                     onSubmit();
                 } catch( e ) {
@@ -86,7 +88,7 @@ const DriverForm = ({
         form.validateFields()
             .then( async( values ) => {
                 try {
-                    await API.put( '/drivers', values ); // post data to server
+                    await API.put( '/interest_points', values ); // post data to server
                     form.resetFields();
                     onSubmit();
                 } catch( error ) {
@@ -105,19 +107,19 @@ const DriverForm = ({
     };
 
 
-    const handleChangeCooperativa = () => {};
+    const handleChangeRutas = () => {};
 
     return (
-        <Modal key="Mod1"
-            visible={ visible }
-            title='Crear nuevo conductor'
-            okText='Crear'
-            confirmLoading={ isSaving }
-            cancelText='Cancelar'
-            onCancel={ onCancel }
-            onOk={ !update
-                ? onCreate
-                : onUpdate }
+        <Modal key="Mod5"
+               visible={ visible }
+               title='Crear nuevo conductor'
+               okText='Crear'
+               confirmLoading={ isSaving }
+               cancelText='Cancelar'
+               onCancel={ onCancel }
+               onOk={ !update
+                   ? onCreate
+                   : onUpdate }
         >
 
             <Form
@@ -132,12 +134,26 @@ const DriverForm = ({
                     rules={ [
                         {
                             required: true,
-                            message: 'Ingresa el nombre del conductor'
+                            message: 'Ingresa el nombre del punto de interes'
                         }
                     ] }
                 >
                     <Input type='textarea'  />
                 </Form.Item>
+
+
+                <Form.Item
+                    name='direction'
+                    label='Dirección'
+                    rules={ [
+                        {
+                            required: true,
+                            message: 'Ingresa la dirección del  punto de interes'
+                        }
+                    ] }>
+                    <Input type='textarea' />
+                </Form.Item>
+
                 <Form.Item
                     name='last_name'
                     label='Apellido'
@@ -151,85 +167,79 @@ const DriverForm = ({
                 </Form.Item>
 
                 <Form.Item
-                    name='cellphone'
-                    label='Teléfono'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa el teléfono del conductor'
-                        }
-                    ] }>
-                    <Input type='textarea' />
-                </Form.Item>
-
-                <Form.Item
                     name='phone'
                     label='Celular'
                     rules={ [
                         {
                             required: true,
-                            message: 'Ingresa el celular del conductor'
+                            message: 'Ingresa el celular del  punto de interes'
                         }
                     ] }>
                     <Input type='textarea' />
                 </Form.Item>
 
-                <Form.Item
-                    name='direction'
-                    label='Dirección'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa la dirección del conductor'
-                        }
-                    ] }>
-                    <Input type='textarea' />
-                </Form.Item>
+
 
                 <Form.Item
-                    name='mail'
-                    label='E-mail'
+                    name='hour_start'
+                    label='Hora inicio'
                     rules={ [
                         {
                             required: true,
-                            message: 'Ingresa el E-mail del conductor'
-                        }
-                    ] }>
-                    <Input type='textarea' />
-                </Form.Item>
-
-                <Form.Item
-                    name='date'
-                    label='Fecha de nacimiento'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa la fecha de nacimiento del conductor'
+                            message: 'Ingresa la hora inicio'
                         }
                     ] }
                 >
+
                     <Space direction="vertical">
-                        <Input type='date'  />
+                        <Input id="appt-time" type="time" name="appt-time" step="2" />
                     </Space>
 
                 </Form.Item>
 
-                <Form.Item name='cooperativa_id'
-                           label='Cooperativa'
+                <Form.Item
+                    name='hour_end'
+                    label='Hora fin'
+                    rules={ [
+                        {
+                            required: true,
+                            message: 'Ingresa la hora fin'
+                        }
+                    ] }
+                >
+
+                    <Space direction="vertical">
+                        <Input id="appt-time" type="time" name="appt-time" step="2"  />
+
+                    </Space>
+
+                </Form.Item>
+
+                <Form.Item name='bus_stop_id'
+                           label='Paradas'
                            rules={ [
                                {
                                    required: true,
-                                   message: 'Selecciona una Cooperativa'
+                                   message: 'Selecciona almenos una parada'
                                }
                            ] }
                 >
-                    <Select style={ { width: 120 } } onChange={ handleChangeCooperativa } loading={ !cooperativas }>
+
+                    <Select
+                        mode="multiple"
+                        allowClear
+                        style={{ width: '100%' }}
+                        placeholder="Porfavor seleccione"
+                        onChange={handleChangeRutas}
+                    >
                         {
-                            cooperativas && cooperativas.map( ( cooperativa, index ) =>
-                                <Option value={ cooperativa.id } key={ index }>{ cooperativa.name }</Option>
+                            busstops && busstops.map( ( busStop, index ) =>
+                                <Option value={ busStop.id } key={ index }>{ busStop.name }</Option>
                             )
                         }
                     </Select>
+
+
                 </Form.Item>
 
 
@@ -238,4 +248,4 @@ const DriverForm = ({
     );
 };
 
-export default DriverForm;
+export default InterestPointForm;
