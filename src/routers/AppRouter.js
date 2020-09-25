@@ -32,6 +32,7 @@ const AsyncVerCooperativa = loadable( () => import( '../pages/VerCooperativa' ),
 const AsyncDrivers = loadable( () => import( '../pages/Drivers' ), loadableOptions );
 const AsyncRutas = loadable( () => import( '../pages/Rutas' ), loadableOptions );
 const AsyncUnidades = loadable( () => import( '../pages/Unidades' ), loadableOptions );
+const AsyncBusStop = loadable( () => import( '../pages/Busstop' ), loadableOptions );
 /**
  * Este es el componente que se encarga de renderizar el componente adecuado
  * de acuerdo a la ruta en la que se encuentra el navegador.
@@ -54,7 +55,8 @@ const AppRouter = () => (
 
       <PrivateRoute path={ Routes.DRIVERS } component={ AsyncDrivers } />
       <PrivateRoute path={ Routes.RUTAS } component={ AsyncRutas } />
-      <PrivateRoute path={ Routes.UNIDADES } component={ AsyncRutas } />
+      <PrivateRoute path={ Routes.UNIDADES } component={ AsyncUnidades } />
+      <PrivateRoute path={ Routes.BUSSTOP } component={ AsyncBusStop } />
 
     <PrivateRoute path={ Routes.PRIVATE } component={ AsyncPrivate } />
     <PrivateRoute path={ Routes.ARTICLE_ID } component={ AsyncArticle } />
