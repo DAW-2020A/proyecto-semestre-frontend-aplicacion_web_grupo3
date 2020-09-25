@@ -159,7 +159,7 @@ const UnidadesForm = ({
                     <Select style={ { width: 180 } } onChange={ handleChangeCooperativa } loading={ !drivers }>
                         {
                             cooperativas && cooperativas.map( ( cooperativa, index ) =>
-                                <Option value={ 1 } key={ index }>{ cooperativa.name }</Option>
+                                <Option value={ cooperativa.id } key={ index }>{ cooperativa.name }</Option>
                             )
                         }
                     </Select>

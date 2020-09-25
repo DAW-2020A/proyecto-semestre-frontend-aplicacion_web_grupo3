@@ -9,6 +9,8 @@ import DriverForm from "./DriverForm";
 import { Link, useLocation } from 'react-router-dom';
 import UnidadesList from "./UnidadesList";
 import BusStopForm from "./BusStopForm";
+import CategoryForm from "./CategoryForm";
+
 
 
 const linkStyle = {};
@@ -19,6 +21,7 @@ const Navigation1 = ( props ) => {
   const [ visible1, setVisible1 ] = useState( false );
   const [ visible2, setVisible2 ] = useState( false );
   const [ visible3, setVisible3 ] = useState( false );
+  const [ visible4, setVisible4 ] = useState( false );
 
   let location = useLocation();
 
@@ -148,6 +151,37 @@ const Navigation1 = ( props ) => {
 
                     onCancel={ () => {
                       setVisible3( false );
+                    } }
+                />
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                <Link to={ Routes.DRIVERS } className='logout-link'>
+                </Link>
+
+
+              </Menu.Item>
+            </SubMenu>
+
+            <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Categorias">
+              <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                <Button
+                    type="link"
+                    onClick={ () => {
+                      setVisible4( true );
+                    } }
+                    block
+                >
+                  Registrar
+                </Button>
+                <CategoryForm
+
+                    visible={ visible4 }
+                    update={ false }
+
+                    onCancel={ () => {
+                      setVisible4( false );
                     } }
                 />
               </Menu.Item>
