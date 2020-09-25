@@ -1,11 +1,7 @@
 import React, {useContext, useState, useEffect, useRef } from 'react';
 import {Skeleton, Card, Col, Row, Radio, Typography, Table, Input, Button, Popconfirm, Form, Select} from 'antd';
-import Routes from '../constants/routes';
-import { Link } from 'react-router-dom';
 import { useDriversList } from '../data/useDriversList';
 import ShowError from './ShowError';
-import {useCooperativaList} from "../data/useCooperativaList";
-import ReactDOM from 'react';
 const { Text } = Typography;
 const EditableContext = React.createContext();
 
