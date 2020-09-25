@@ -23,6 +23,8 @@ const Navigation1 = ( props ) => {
   const [ visible2, setVisible2 ] = useState( false );
   const [ visible3, setVisible3 ] = useState( false );
   const [ visible4, setVisible4 ] = useState( false );
+  const [ visible5, setVisible5 ] = useState( false );
+  const [ visible6, setVisible6 ] = useState( false );
 
   let location = useLocation();
 
@@ -158,15 +160,12 @@ const Navigation1 = ( props ) => {
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.DRIVERS } className='logout-link'>
+                <Link to={ Routes.UNIDADES } className='logout-link'>
                 </Link>
 
 
               </Menu.Item>
             </SubMenu>
-
-            <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Categorias">
-              <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
 
             <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Rutas">
               <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
@@ -174,7 +173,40 @@ const Navigation1 = ( props ) => {
                 <Button
                     type="link"
                     onClick={ () => {
-                      setVisible4( true );
+                      setVisible5( true );
+                    } }
+                    block
+                >
+                  Registrar
+                </Button>
+
+                <RoutesForm
+                    visible={ visible5 }
+                    update={ false }
+
+                    onCancel={ () => {
+                      setVisible5( false );
+                    } }
+                />
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                <Link to={ Routes.RUTAS } className='logout-link'>
+                </Link>
+
+
+              </Menu.Item>
+            </SubMenu>
+
+
+            <SubMenu style={{ color: "#000000" }} key="sub6" icon={<UserOutlined />} title="Categorias">
+              <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
+                <Button
+                    type="link"
+                    onClick={ () => {
+                      setVisible6( true );
                     } }
                     block
                 >
@@ -182,21 +214,18 @@ const Navigation1 = ( props ) => {
                 </Button>
 
                 <CategoryForm
-
-                <RoutesForm
-
-                    visible={ visible4 }
+                    visible={ visible6 }
                     update={ false }
 
                     onCancel={ () => {
-                      setVisible4( false );
+                      setVisible6( false );
                     } }
                 />
               </Menu.Item>
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.DRIVERS } className='logout-link'>
+                <Link to={ Routes.CATEGORIES } className='logout-link'>
                 </Link>
 
 
