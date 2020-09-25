@@ -116,10 +116,10 @@ const create = ( config ) => {
 };
 
 const API = create(
-  {
-    baseURL,
-    headers
-  }
+    {
+      baseURL,
+      headers
+    }
 );
 
 export default API;

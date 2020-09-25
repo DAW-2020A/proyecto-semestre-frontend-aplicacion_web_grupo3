@@ -12,7 +12,6 @@ import '../styles/login.css';
 import ErrorList from '../components/ErrorList';
 
 const Login = () => {
-
   const { setAuthenticated, setCurrentUser } = useAuth();
 
   const onFinish = async( userData ) => {
@@ -38,75 +37,75 @@ const Login = () => {
   };
 
   return (
-    <div className="divLogin" align={"center"}>
-      {
-        <Row justify='center' className='login'>
-          <Col span={ 24 }>
-            <Form
-              name='login-form'
-              className='login-form'
-              initialValues={ {
-                remember: true,
-                username: '',
-                password: ''
-              } }
-              onFinish={ onFinish }
-            >
-              <Form.Item
-                name='username'
-                rules={ [
-                  {
-                    required: true,
-                    message: 'Ingresa tu nombre de usuario'
-                  },
-                  {
-                    type: 'email',
-                    message: 'Ingresa un correo válido'
-                  }
-                ] }
+      <div className='divLogin' align={"center"}>
+        {
+          <Row justify='center' className='login'>
+            <Col span={ 24 }>
+              <Form
+                  name='login-form'
+                  className='login-form'
+                  initialValues={ {
+                    remember: true,
+                    username: '',
+                    password: ''
+                  } }
+                  onFinish={ onFinish }
               >
-                <Input prefix={ <UserOutlined className='site-form-item-icon' /> }
-                       placeholder='Email'
-                       autoComplete='email' />
-              </Form.Item>
+                <Form.Item
+                    name='username'
+                    rules={ [
+                      {
+                        required: true,
+                        message: 'Ingresa tu nombre de usuario'
+                      },
+                      {
+                        type: 'email',
+                        message: 'Ingresa un correo válido'
+                      }
+                    ] }
+                >
+                  <Input prefix={ <UserOutlined className='site-form-item-icon' /> }
+                         placeholder='Email'
+                         autoComplete='email' />
+                </Form.Item>
 
-              <Form.Item
-                name='password'
-                rules={ [
-                  {
-                    required: true,
-                    message: 'Ingresa tu clave'
-                  }
-                ] }
-              >
-                <Input.Password
-                  prefix={ <LockOutlined className='site-form-item-icon' /> }
-                  iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
-                  placeholder='Password' autoComplete='password'
-                />
-              </Form.Item>
+                <Form.Item
+                    name='password'
+                    rules={ [
+                      {
+                        required: true,
+                        message: 'Ingresa tu clave'
+                      }
+                    ] }
+                >
+                  <Input.Password
+                      prefix={ <LockOutlined className='site-form-item-icon' /> }
+                      iconRender={visible => (visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />)}
+                      placeholder='Password' autoComplete='password'
+                  />
+                </Form.Item>
 
-              <Form.Item name='remember' valuePropName='checked' noStyle>
-                <Checkbox>Recordarme</Checkbox>
-              </Form.Item>
+                <Form.Item name='remember' valuePropName='checked' noStyle>
+                  <Checkbox>Recordarme</Checkbox>
+                </Form.Item>
 
-              <Form.Item>
-                <Link className='login-form-forgot' to=''>
-                  ¡Olvidé mi clave!
-                </Link>
-              </Form.Item>
+                <Form.Item>
+                  <Link className='login-form-forgot' to=''>
+                    ¡Olvidé mi clave!
+                  </Link>
+                </Form.Item>
 
-              <Form.Item>
-                <Button type='primary' htmlType='submit' className='login-form-button'>
-                  Ingresar
-                </Button>
-                <div>Soy nuevo, <Link to={ Routes.REGISTER }>registrarme</Link></div>
-              </Form.Item>
-            </Form>
-          </Col>
-        </Row>
-      }
-    </div>
+                <Form.Item>
+                  <Button type='primary' htmlType='submit' className='login-form-button'>
+                    Ingresar
+                  </Button>
+                  <div>Soy nuevo, <Link to={ Routes.REGISTER }>registrarme</Link></div>
+                </Form.Item>
+              </Form>
+            </Col>
+          </Row>
+        }
+      </div>
   );
 };
 
