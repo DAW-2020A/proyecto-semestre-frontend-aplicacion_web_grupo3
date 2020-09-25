@@ -12,7 +12,7 @@ const publicRoutes = {
   HOME: '/',
   ABOUT: '/acerca-de',
   ANTD: '/antd',
-  VERCOOPERATIVA: '/ver-cooperativa'
+
 };
 
 const privateRoutes = {
@@ -24,7 +24,10 @@ const privateRoutes = {
   UNIDADES:'unidades',
   BUSSTOP:'/paradas',
   CATEGORIES:'categorias',
-  PUNTOSINTERES:'puntosinteres'
+  VERCOOPERATIVA: '/ver-cooperativa',
+  PUNTOSINTERES:'/puntosinteres',
+  HORARIOS:'/horarios'
+
 };
 
 const Routes = {
