@@ -176,7 +176,7 @@ const DriverForm = ({
                         }
                     ] }
                 >
-                    <Input />
+                    <Input type='textarea'  />
                 </Form.Item>
                 <Form.Item
                     name='last_name'
@@ -266,7 +266,7 @@ const DriverForm = ({
                     <Select style={ { width: 120 } } onChange={ handleChangeCooperativa } loading={ !cooperativas }>
                         {
                             cooperativas && cooperativas.map( ( cooperativa, index ) =>
-                                <Option value={ 1 } key={ index }>{ cooperativa.name }</Option>
+                                <Option value={ cooperativa.id } key={ index }>{ cooperativa.name }</Option>
                             )
                         }
                     </Select>

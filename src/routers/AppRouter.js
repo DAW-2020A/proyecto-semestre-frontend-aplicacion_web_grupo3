@@ -33,6 +33,7 @@ const AsyncDrivers = loadable( () => import( '../pages/Drivers' ), loadableOptio
 const AsyncRutas = loadable( () => import( '../pages/Rutas' ), loadableOptions );
 const AsyncUnidades = loadable( () => import( '../pages/Unidades' ), loadableOptions );
 const AsyncBusStop = loadable( () => import( '../pages/Busstop' ), loadableOptions );
+const AsyncCategories = loadable( () => import( '../pages/Category' ), loadableOptions );
 /**
  * Este es el componente que se encarga de renderizar el componente adecuado
  * de acuerdo a la ruta en la que se encuentra el navegador.
@@ -57,6 +58,7 @@ const AppRouter = () => (
       <PrivateRoute path={ Routes.RUTAS } component={ AsyncRutas } />
       <PrivateRoute path={ Routes.UNIDADES } component={ AsyncUnidades } />
       <PrivateRoute path={ Routes.BUSSTOP } component={ AsyncBusStop } />
+      <PrivateRoute path={ Routes.CATEGORIES } component={ AsyncCategories } />
 
     <PrivateRoute path={ Routes.PRIVATE } component={ AsyncPrivate } />
     <PrivateRoute path={ Routes.ARTICLE_ID } component={ AsyncArticle } />

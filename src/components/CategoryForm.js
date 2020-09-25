@@ -6,6 +6,8 @@ import ErrorList from './ErrorList';
 import { PlusOutlined } from '@ant-design/icons';
 import { mutate } from 'swr';
 import {useCooperativaList} from "../data/useCooperativaList";
+import {useCategoriesList} from "../data/useCategoriesList";
+
 
 const { Option } = Select;
 
@@ -20,14 +22,13 @@ function onChange(date, dateString) {
     console.log(date, dateString);
 }
 
-const BusStopForm = ({
+const CategoryForm = ({
                         visible,
                         update,
                         onSubmit,
                         onCancel
 
                     } ) => {
-
 
     const [ form ] = Form.useForm();
 
@@ -50,14 +51,15 @@ const BusStopForm = ({
                 // use form data to be able to send a file to the server
                 const data = new FormData();
                 data.append( 'name', values.name );
-                data.append( 'direction', values.direction );
-                data.append( 'longitude', values.longitude );
-                data.append( 'latitude', values.latitude );
 
-                try{
-                    await API.post( '/bus_stops', data ); // post data to server
+
+
+                try {
+                    await API.post( '/categorie_places', data ); // post data to server
                     form.resetFields();
+
                     setFileList( [] );
+
                     setIsSaving( false );
                     onSubmit();
                 } catch( e ) {
@@ -79,7 +81,7 @@ const BusStopForm = ({
         form.validateFields()
             .then( async( values ) => {
                 try {
-                    await API.put( '/bus_stops', values ); // post data to server
+                    await API.put( '/categorie_places', values ); // post data to server
                     form.resetFields();
                     onSubmit();
                 } catch( error ) {
@@ -98,19 +100,19 @@ const BusStopForm = ({
     };
 
 
-    const handleChangeBusstop = () => {};
+
 
     return (
-        <Modal key="Mod3"
-            visible={ visible }
-            title='Crear nueva parada'
-            okText='Crear'
-            confirmLoading={ isSaving }
-            cancelText='Cancelar'
-            onCancel={ onCancel }
-            onOk={ !update
-                ? onCreate
-                : onUpdate }
+        <Modal key="Mod1"
+               visible={ visible }
+               title='Crear nueva Categoria'
+               okText='Crear'
+               confirmLoading={ isSaving }
+               cancelText='Cancelar'
+               onCancel={ onCancel }
+               onOk={ !update
+                   ? onCreate
+                   : onUpdate }
         >
 
             <Form
@@ -125,51 +127,19 @@ const BusStopForm = ({
                     rules={ [
                         {
                             required: true,
-                            message: 'Ingresa el nombre de la parada'
+                            message: 'Ingresa el nombre de la categoría'
                         }
                     ] }
                 >
-                    <Input type='textarea'/>
-                </Form.Item>
-                <Form.Item
-                    name='direction'
-                    label='Dirección'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa la dirección de la parada'
-                        }
-                    ] }>
                     <Input type='textarea' />
+
+
                 </Form.Item>
 
-                <Form.Item
-                    name='longitude'
-                    label='Longitud'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa la longitud de la parada'
-                        }
-                    ] }>
-                    <Input type='textarea' />
-                </Form.Item>
-
-                <Form.Item
-                    name='latitude'
-                    label='Latitud'
-                    rules={ [
-                        {
-                            required: true,
-                            message: 'Ingresa la latitud de la parada'
-                        }
-                    ] }>
-                    <Input type='textarea' />
-                </Form.Item>
 
             </Form>
         </Modal>
     );
 };
 
-export default BusStopForm;
+export default CategoryForm;
