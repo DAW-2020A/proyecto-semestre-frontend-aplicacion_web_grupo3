@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Routes from '../constants/routes';
 import { useAuth } from '../providers/Auth';
 import { Menu, Layout,Button } from 'antd';
-import { LogoutOutlined, LoginOutlined, LoadingOutlined, UserOutlined } from '@ant-design/icons';
+import { CarOutlined,ScheduleOutlined,EnvironmentOutlined,BookOutlined ,InsertRowLeftOutlined, UserOutlined,SolutionOutlined,NodeExpandOutlined,ContainerOutlined } from '@ant-design/icons';
 import UnidadesForm from "./UnidadesForm";
 import DriverForm from "./DriverForm";
 import { Link, useLocation } from 'react-router-dom';
@@ -54,250 +54,250 @@ const Navigation1 = ( props ) => {
   };
 
   return (
-    <>
-      <Layout style={{ minHeight: '70vh' }}>
+      <>
+        <Layout style={{ minHeight: '70vh' }}>
 
-        <Sider style={{ background: "#ffffff" }}>
-          <div className="logo" />
-          <Menu style={{ background: "#ffffff" }} theme="light" defaultSelectedKeys={['1']} mode="inline">
-            <SubMenu style={{ color: "#000000" }} key="sub1" icon={<UserOutlined />} title="Cooperativa">
+          <Sider style={{ background: "#ffffff" }}>
+            <div className="logo" />
+            <Menu style={{ background: "#ffffff" }} theme="light" defaultSelectedKeys={['1']} mode="inline">
+              <SubMenu style={{ color: "#000000" }} key="sub1" icon={<ContainerOutlined />} title="Cooperativa">
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
-                <Link to={ Routes.VERCOOPERATIVA } className='logout-link'>
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                  <Link to={ Routes.VERCOOPERATIVA } className='logout-link'>
 
-                </Link>
-              </Menu.Item>
+                  </Link>
+                </Menu.Item>
 
-            </SubMenu>
+              </SubMenu>
 
-            <SubMenu style={{ color: "#000000" }} key="sub2" icon={<UserOutlined />} title="Conductor">
-              <Menu.Item  key={Routes.DRIVERS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible1( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
-                <DriverForm
+              <SubMenu style={{ color: "#000000" }} key="sub2" icon={<SolutionOutlined />} title="Conductor">
+                <Menu.Item  key={Routes.DRIVERS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible1( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
+                  <DriverForm
 
-                    visible={ visible1 }
-                    update={ false }
+                      visible={ visible1 }
+                      update={ false }
 
-                    onCancel={ () => {
-                      setVisible1( false );
-                    } }
-                />
+                      onCancel={ () => {
+                        setVisible1( false );
+                      } }
+                  />
 
-              </Menu.Item>
+                </Menu.Item>
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
                   <Link to={ Routes.DRIVERS } className='logout-link'>
                   </Link>
 
 
                 </Menu.Item>
-            </SubMenu>
+              </SubMenu>
 
-            <SubMenu style={{ color: "#000000" }} key="sub3" icon={<UserOutlined />} title="Unidades">
-              <Menu.Item  key={Routes.UNIDADES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible2( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
-                <UnidadesForm
+              <SubMenu style={{ color: "#000000" }} key="sub3" icon={<CarOutlined />} title="Unidades">
+                <Menu.Item  key={Routes.UNIDADES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible2( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
+                  <UnidadesForm
 
-                    visible={ visible2 }
-                    update={ false }
+                      visible={ visible2 }
+                      update={ false }
 
-                    onCancel={ () => {
-                      setVisible2( false );
-                    } }
-                />
-              </Menu.Item>
+                      onCancel={ () => {
+                        setVisible2( false );
+                      } }
+                  />
+                </Menu.Item>
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.DRIVERS } className='logout-link'>
-                </Link>
-
-
-              </Menu.Item>
-            </SubMenu>
-
-            <SubMenu style={{ color: "#000000" }} key="sub4" icon={<UserOutlined />} title="Paradas">
-              <Menu.Item  key={Routes.BUSSTOP} style={{ background: "#E6F7FF", color: "#1890FF" }}>
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible3( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
-                <BusStopForm
-
-                    visible={ visible3 }
-                    update={ false }
-
-                    onCancel={ () => {
-                      setVisible3( false );
-                    } }
-                />
-              </Menu.Item>
-
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
-
-                <Link to={ Routes.BUSSTOP } className='logout-link'>
-                </Link>
+                  <Link to={ Routes.UNIDADES } className='logout-link'>
+                  </Link>
 
 
-              </Menu.Item>
-            </SubMenu>
+                </Menu.Item>
+              </SubMenu>
 
-            <SubMenu style={{ color: "#000000" }} key="sub5" icon={<UserOutlined />} title="Rutas">
-              <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+              <SubMenu style={{ color: "#000000" }} key="sub4" icon={<BookOutlined />} title="Paradas">
+                <Menu.Item  key={Routes.BUSSTOP} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible3( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
+                  <BusStopForm
 
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible5( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
+                      visible={ visible3 }
+                      update={ false }
 
-                <RoutesForm
-                    visible={ visible5 }
-                    update={ false }
+                      onCancel={ () => {
+                        setVisible3( false );
+                      } }
+                  />
+                </Menu.Item>
 
-                    onCancel={ () => {
-                      setVisible5( false );
-                    } }
-                />
-              </Menu.Item>
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
-
-                <Link to={ Routes.RUTAS } className='logout-link'>
-                </Link>
-
-
-              </Menu.Item>
-            </SubMenu>
+                  <Link to={ Routes.BUSSTOP } className='logout-link'>
+                  </Link>
 
 
-            <SubMenu style={{ color: "#000000" }} key="sub6" icon={<UserOutlined />} title="Categorias">
-              <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+                </Menu.Item>
+              </SubMenu>
 
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible6( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
+              <SubMenu style={{ color: "#000000" }} key="sub5" icon={<NodeExpandOutlined />} title="Rutas">
+                <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
 
-                <CategoryForm
-                    visible={ visible6 }
-                    update={ false }
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible5( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
 
-                    onCancel={ () => {
-                      setVisible6( false );
-                    } }
-                />
-              </Menu.Item>
+                  <RoutesForm
+                      visible={ visible5 }
+                      update={ false }
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                      onCancel={ () => {
+                        setVisible5( false );
+                      } }
+                  />
+                </Menu.Item>
 
-                <Link to={ Routes.CATEGORIES } className='logout-link'>
-                </Link>
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-
-              </Menu.Item>
-            </SubMenu>
-
-            <SubMenu style={{ color: "#000000" }} key="sub7" icon={<UserOutlined />} title="Puntos de Interes">
-              <Menu.Item  key={Routes.PUNTOSINTERES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
-
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible7( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
-
-                <InterestPointForm
-                    visible={ visible7 }
-                    update={ false }
-
-                    onCancel={ () => {
-                      setVisible7( false );
-                    } }
-                />
-              </Menu.Item>
-
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
-
-                <Link to={ Routes.PUNTOSINTERES } className='logout-link'>
-                </Link>
+                  <Link to={ Routes.RUTAS } className='logout-link'>
+                  </Link>
 
 
-              </Menu.Item>
-            </SubMenu>
+                </Menu.Item>
+              </SubMenu>
 
 
-            <SubMenu style={{ color: "#000000" }} key="sub8" icon={<UserOutlined />} title="Horarios">
-              <Menu.Item  key={Routes.HORARIOS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+              <SubMenu style={{ color: "#000000" }} key="sub6" icon={<InsertRowLeftOutlined />} title="Categorias">
+                <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
 
-                <Button
-                    type="link"
-                    onClick={ () => {
-                      setVisible8( true );
-                    } }
-                    block
-                >
-                  Registrar
-                </Button>
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible6( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
 
-                <HorarioForm
-                    visible={ visible8 }
-                    update={ false }
+                  <CategoryForm
+                      visible={ visible6 }
+                      update={ false }
 
-                    onCancel={ () => {
-                      setVisible8( false );
-                    } }
-                />
-              </Menu.Item>
+                      onCancel={ () => {
+                        setVisible6( false );
+                      } }
+                  />
+                </Menu.Item>
 
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.HORARIOS } className='logout-link'>
-                </Link>
+                  <Link to={ Routes.CATEGORIES } className='logout-link'>
+                  </Link>
 
 
-              </Menu.Item>
-            </SubMenu>
+                </Menu.Item>
+              </SubMenu>
 
-          </Menu>
-        </Sider>
-      </Layout>
-    </>
+              <SubMenu style={{ color: "#000000" }} key="sub7" icon={<EnvironmentOutlined />} title="Puntos de Interes">
+                <Menu.Item  key={Routes.PUNTOSINTERES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible7( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
+
+                  <InterestPointForm
+                      visible={ visible7 }
+                      update={ false }
+
+                      onCancel={ () => {
+                        setVisible7( false );
+                      } }
+                  />
+                </Menu.Item>
+
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                  <Link to={ Routes.PUNTOSINTERES } className='logout-link'>
+                  </Link>
+
+
+                </Menu.Item>
+              </SubMenu>
+
+
+              <SubMenu style={{ color: "#000000" }} key="sub8" icon={<ScheduleOutlined />} title="Horarios">
+                <Menu.Item  key={Routes.HORARIOS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
+                  <Button
+                      type="link"
+                      onClick={ () => {
+                        setVisible8( true );
+                      } }
+                      block
+                  >
+                    Registrar
+                  </Button>
+
+                  <HorarioForm
+                      visible={ visible8 }
+                      update={ false }
+
+                      onCancel={ () => {
+                        setVisible8( false );
+                      } }
+                  />
+                </Menu.Item>
+
+                <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                  <Link to={ Routes.HORARIOS } className='logout-link'>
+                  </Link>
+
+
+                </Menu.Item>
+              </SubMenu>
+
+            </Menu>
+          </Sider>
+        </Layout>
+      </>
   );
 };
 

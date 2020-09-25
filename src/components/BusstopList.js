@@ -1,71 +1,78 @@
-import React, { useState } from 'react';
-import API from '../data';
-import { translateMessage } from '../utils/translateMessage';
-import ArticleList from '../components/DriversList';
-import DriverForm from '../components/DriverForm';
-import { Button, message, Skeleton, Row, Col } from 'antd';
-import { useAuth } from '../providers/Auth';
-import { useCooperativaList } from '../data/useCooperativaList';
-import ShowError from '../components/ShowError';
-import { mutate } from 'swr';
-import DriversList from "../components/DriversList";
+import React, {useContext, useState, useEffect, useRef } from 'react';
+import {Skeleton, Card, Col, Row, Radio, Typography, Table, Input, Button, Popconfirm, Form, Select} from 'antd';
+import Routes from '../constants/routes';
+import { Link } from 'react-router-dom';
+import { useDriversList } from '../data/useDriversList';
+import ShowError from './ShowError';
+import {useCooperativaList} from "../data/useCooperativaList";
+import ReactDOM from 'react';
+import {useBusstopList} from "../data/useBusstopList";
+const { Text } = Typography;
+const EditableContext = React.createContext();
 
-/**
- * Fetch Drivers from DB
- */
-export const fetchArticles = async() => {
-    // console.log( `Show data fetched. Articles: ${ JSON.stringify( articles ) }` );
-
-    return await API.get( '/drivers' );
-};
-
-/**
- * Articles list page
- * @param props
- * @constructor
- */
-const Drivers = (props ) => {
-
-    const [ visible, setVisible ] = useState( false );
-    const categories = useCooperativaList();
-    const { cooperativas } = useCooperativaList();
-    const auth = useAuth();
-
-
-
-    /**
-     * Executed after the form is submitted
-     * Fetches all the articles and refreshes the list
-     * Closes the modal
-     */
-    /*const afterCreate = async() => {
-        try {
-            // show skeleton
-            await mutate( '/articles', async articles => {
-                return { data: [ {}, ...articles.data ] };
-            }, false );
-
-            await mutate( '/articles' );
-            setVisible( false ); // close the modal
-        } catch( error ) {
-            console.error(
-                'You have an error in your code or there are Network issues.',
-                error
-            );
-
-            message.error( translateMessage( error.message ) );
-        }
-    };*/
-
+const EditableRow = ({ index, ...props }) => {
+    const [form] = Form.useForm();
     return (
-        <div>
-
-            <DriversList></DriversList>
-
-        </div>
+        <Form form={form} component={false}>
+            <EditableContext.Provider value={form}>
+                <tr {...props} />
+            </EditableContext.Provider>
+        </Form>
     );
 };
 
 
-export default Drivers;
+
+const BusstopList = ( props ) => {
+
+    const {busstops, isLoading, isError, mutate} = useBusstopList();
+    const columns = [
+        {
+            title: 'Nombre',
+            dataIndex: 'name',
+
+        },
+        {
+            title: 'Direcíon',
+            dataIndex: 'direction',
+        },
+        {
+            title: 'Longitud',
+            dataIndex: 'longitude',
+        },
+        {
+            title: 'Latitud',
+            dataIndex: 'latitude',
+        },
+    ];
+
+    if (isLoading) {
+        return <Row justify='center' gutter={30}>
+            {
+                [...new Array(9)].map((_, i) =>
+                    <Col xs={24} sm={12} md={8} style={{marginBottom: 30}} key={i}>
+                        <div style={{textAlign: 'center'}}>
+                            <Skeleton.Image style={{width: 200}}/>
+                            <Card title='' extra='' cover='' loading/>
+                        </div>
+                    </Col>
+                )
+            }
+        </Row>;
+    }
+
+    if (isError) {
+        return <ShowError error={isError}/>;
+    }
+    return (
+        <>
+            <Table columns={columns} dataSource={busstops}>
+
+            </Table>
+
+        </>
+    );
+
+};
+export default BusstopList;
 

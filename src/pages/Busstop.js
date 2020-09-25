@@ -9,6 +9,7 @@ import { useCooperativaList } from '../data/useCooperativaList';
 import ShowError from '../components/ShowError';
 import { mutate } from 'swr';
 import BusstopList from "../components/BusstopList";
+import '../styles/vercooperativa.css'
 
 /**
  * Fetch Drivers from DB
@@ -58,8 +59,8 @@ const Unidades = (props ) => {
     };*/
 
     return (
-        <div>
-
+        <div className='div1' >
+<h1>PARADAS</h1>
             <BusstopList></BusstopList>
 
         </div>

@@ -6,11 +6,11 @@ import { Table, Tag, Space } from 'antd';
 import RoutesList from "../components/RoutesList";
 const VerCooperativas = () => (
     <>
-        <div className='div1'>
+        <div className='div1' style={{ textAlign: "center"  }}>
             <h1 className='title'>
-                Ver Cooperativa
+                 Cooperativa
             </h1>
-            <RoutesList/>
+            <CooperativasList/>
         </div>
         <div>
 
