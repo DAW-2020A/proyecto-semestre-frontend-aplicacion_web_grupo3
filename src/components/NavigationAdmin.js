@@ -12,6 +12,7 @@ import RoutesForm from "./RoutesForm";
 import BusStopForm from "./BusStopForm";
 import CategoryForm from "./CategoryForm";
 import InterestPointForm from "./InterestPointForm";
+import HorarioForm from "./HorarioForm";
 
 
 
@@ -26,6 +27,7 @@ const Navigation1 = ( props ) => {
   const [ visible7, setVisible7 ] = useState( false );
   const [ visible5, setVisible5 ] = useState( false );
   const [ visible6, setVisible6 ] = useState( false );
+  const [ visible8, setVisible8 ] = useState( false );
 
   let location = useLocation();
 
@@ -59,12 +61,6 @@ const Navigation1 = ( props ) => {
           <div className="logo" />
           <Menu style={{ background: "#ffffff" }} theme="light" defaultSelectedKeys={['1']} mode="inline">
             <SubMenu style={{ color: "#000000" }} key="sub1" icon={<UserOutlined />} title="Cooperativa">
-
-              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }} key={Routes.HOME}>Registrar
-                <Link to={ Routes.HOME } className='logout-link'>
-
-                </Link>
-              </Menu.Item>
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
                 <Link to={ Routes.VERCOOPERATIVA } className='logout-link'>
@@ -138,7 +134,7 @@ const Navigation1 = ( props ) => {
             </SubMenu>
 
             <SubMenu style={{ color: "#000000" }} key="sub4" icon={<UserOutlined />} title="Paradas">
-              <Menu.Item  key={Routes.UNIDADES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+              <Menu.Item  key={Routes.BUSSTOP} style={{ background: "#E6F7FF", color: "#1890FF" }}>
                 <Button
                     type="link"
                     onClick={ () => {
@@ -161,7 +157,7 @@ const Navigation1 = ( props ) => {
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.UNIDADES } className='logout-link'>
+                <Link to={ Routes.BUSSTOP } className='logout-link'>
                 </Link>
 
 
@@ -202,7 +198,7 @@ const Navigation1 = ( props ) => {
 
 
             <SubMenu style={{ color: "#000000" }} key="sub6" icon={<UserOutlined />} title="Categorias">
-              <Menu.Item  key={Routes.RUTAS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+              <Menu.Item  key={Routes.CATEGORIES} style={{ background: "#E6F7FF", color: "#1890FF" }}>
 
                 <Button
                     type="link"
@@ -258,7 +254,40 @@ const Navigation1 = ( props ) => {
 
               <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
 
-                <Link to={ Routes.CATEGORIES } className='logout-link'>
+                <Link to={ Routes.PUNTOSINTERES } className='logout-link'>
+                </Link>
+
+
+              </Menu.Item>
+            </SubMenu>
+
+
+            <SubMenu style={{ color: "#000000" }} key="sub8" icon={<UserOutlined />} title="Horarios">
+              <Menu.Item  key={Routes.HORARIOS} style={{ background: "#E6F7FF", color: "#1890FF" }}>
+
+                <Button
+                    type="link"
+                    onClick={ () => {
+                      setVisible8( true );
+                    } }
+                    block
+                >
+                  Registrar
+                </Button>
+
+                <HorarioForm
+                    visible={ visible8 }
+                    update={ false }
+
+                    onCancel={ () => {
+                      setVisible8( false );
+                    } }
+                />
+              </Menu.Item>
+
+              <Menu.Item style={{ background: "#E6F7FF", color: "#1890FF" }}>Ver
+
+                <Link to={ Routes.HORARIOS } className='logout-link'>
                 </Link>
 
 

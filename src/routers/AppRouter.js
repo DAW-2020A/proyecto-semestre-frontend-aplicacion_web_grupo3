@@ -35,6 +35,7 @@ const AsyncUnidades = loadable( () => import( '../pages/Unidades' ), loadableOpt
 const AsyncBusStop = loadable( () => import( '../pages/Busstop' ), loadableOptions );
 const AsyncCategories = loadable( () => import( '../pages/Category' ), loadableOptions );
 const AsyncPuntosInteres = loadable( () => import( '../pages/PuntosInteres' ), loadableOptions );
+const AsyncHorarios = loadable( () => import( '../pages/Horarios' ), loadableOptions );
 /**
  * Este es el componente que se encarga de renderizar el componente adecuado
  * de acuerdo a la ruta en la que se encuentra el navegador.
@@ -61,6 +62,7 @@ const AppRouter = () => (
       <PrivateRoute path={ Routes.BUSSTOP } component={ AsyncBusStop } />
       <PrivateRoute path={ Routes.CATEGORIES } component={ AsyncCategories } />
       <PrivateRoute path={ Routes.PUNTOSINTERES } component={ AsyncPuntosInteres } />
+      <PrivateRoute path={ Routes.HORARIOS } component={ AsyncHorarios } />
 
     <PrivateRoute path={ Routes.PRIVATE } component={ AsyncPrivate } />
     <PrivateRoute path={ Routes.ARTICLE_ID } component={ AsyncArticle } />
